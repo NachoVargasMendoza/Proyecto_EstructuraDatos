@@ -6,8 +6,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ignac
+ * @author Ignacio
  */
+
 public class AgregarInventario_Cola extends Articulos{
 
     private Nodo_Cola inicio;
