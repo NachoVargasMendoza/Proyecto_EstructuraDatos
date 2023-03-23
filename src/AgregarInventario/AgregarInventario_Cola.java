@@ -92,8 +92,12 @@ public class AgregarInventario_Cola extends Articulos{
                 finAux = nuevo;
                 inicio = inicio.getSiguiente();
             }
+            while(inicioAux!=null){
+                agregar(inicioAux.getDato().getNombre(), inicioAux.getDato().getDescripcion());
+                inicioAux=inicioAux.getSiguiente();
+            }
 
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "Datos no encontrados");
         }
 
