@@ -5,6 +5,7 @@
 package Inventario;
 
 import Proyecto_EstructuraDeDatos.Articulos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Inventario_LDC extends Articulos {
         this.inicio = null;
         this.fin = null;
     }
+    
+    public Inventario_LDC(){}
 
     public boolean vacio() {
         if (inicio == null) {
@@ -29,17 +32,17 @@ public class Inventario_LDC extends Articulos {
         }
     }
 
-    public void agregar(String nombre, String descripcion,double  precio, int cantidad) {
+    public void agregar(Articulos nu) {
 
-        Articulos articuloNuevo = new Articulos(nombre, descripcion, 0, 0);
+        //Articulos articuloNuevo = new Articulos(nombre, descripcion, 0, 0);
 
-        articuloNuevo.setNombre(nombre);
-        articuloNuevo.setDescripcion(descripcion);
-        articuloNuevo.setPrecio(precio);
-        articuloNuevo.setCantidad(cantidad);
+        //articuloNuevo.setNombre(nombre);
+        //articuloNuevo.setDescripcion(descripcion);
+        //articuloNuevo.setPrecio(precio);
+        //articuloNuevo.setCantidad(cantidad);
 
         Nodo_LDC nuevo = new Nodo_LDC();
-        nuevo.setDatos(articuloNuevo);
+        nuevo.setDatos(nu);
 
         if (vacio()) {
             inicio = nuevo;
@@ -47,19 +50,19 @@ public class Inventario_LDC extends Articulos {
             fin = nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
-        } else if(articuloNuevo.getPrecio()<inicio.getDatos().getPrecio()){
+        } else if(nu.getPrecio()<inicio.getDatos().getPrecio()){
             nuevo.setSiguiente(inicio);
             inicio=nuevo;
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
-        }else if(articuloNuevo.getPrecio()>fin.getDatos().getPrecio()){
+        }else if(nu.getPrecio()>fin.getDatos().getPrecio()){
             fin.setSiguiente(inicio);
             fin=fin.getSiguiente();
             fin.setSiguiente(inicio);
             inicio.setAnterior(fin);
         }else{
-            Nodo_LDC aux = new Nodo_LDC();
-            while(aux.getSiguiente().getDatos().getPrecio()<articuloNuevo.getPrecio()){
+            Nodo_LDC aux = inicio;
+            while(aux.getSiguiente().getDatos().getPrecio()<nu.getPrecio()){
                 aux=aux.getSiguiente();
             }
             nuevo.setSiguiente(aux.getSiguiente());
@@ -73,10 +76,15 @@ public class Inventario_LDC extends Articulos {
         String s ="";
         if(!vacio()){
             Nodo_LDC aux = inicio;
-            while (aux!=null) {                
+            s+=aux.getDatos().getNombre()+aux.getDatos().getDescripcion()+aux.getDatos().getPrecio()+aux.getDatos().getCantidad();
+            aux=aux.getSiguiente();
+            while (aux!=inicio) {                
                 s+=aux.getDatos().getNombre()+aux.getDatos().getDescripcion()+aux.getDatos().getPrecio()+aux.getDatos().getCantidad();
+                aux= aux.getSiguiente();
             }
+            JOptionPane.showMessageDialog(null, s);
         }
+        
         return s;
     }
 
