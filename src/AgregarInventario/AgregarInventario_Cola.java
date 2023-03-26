@@ -1,5 +1,5 @@
-
 package AgregarInventario;
+
 import Proyecto_EstructuraDeDatos.*;
 
 import javax.swing.JOptionPane;
@@ -8,13 +8,12 @@ import javax.swing.JOptionPane;
  *
  * @author Ignacio
  */
-
-public class AgregarInventario_Cola extends Articulos{
+public class AgregarInventario_Cola extends Articulos {
 
     private Nodo_Cola inicio;
     private Nodo_Cola fin;
 
-    public AgregarInventario_Cola (String nombre, String descripcion, double precio, int cantidad){
+    public AgregarInventario_Cola(String nombre, String descripcion, double precio, int cantidad) {
         super(nombre, descripcion, precio, cantidad);
         this.inicio = null;
         this.fin = null;
@@ -93,12 +92,45 @@ public class AgregarInventario_Cola extends Articulos{
                 finAux = nuevo;
                 inicio = inicio.getSiguiente();
             }
-            while(inicioAux!=null){
+            while (inicioAux != null) {
                 agregar(inicioAux.getDato().getNombre(), inicioAux.getDato().getDescripcion());
-                inicioAux=inicioAux.getSiguiente();
+                inicioAux = inicioAux.getSiguiente();
             }
 
-        }else{
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos no encontrados");
+        }
+
+    }
+
+    public void modificar(String nombre) {
+
+        if (encuentra(nombre)) {
+
+            String nuevoNombre = JOptionPane.showInputDialog("Ingrese nombre");
+            Double nuevoPRecio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese precio"));
+            String nuevaDEs = JOptionPane.showInputDialog("Ingrese nueva descipcion");
+            if (inicio.getDato().getNombre().equals(nombre)) {
+                inicio.getDato().setNombre(nuevoNombre);
+                inicio.getDato().setDescripcion(nuevaDEs);
+                inicio.getDato().setPrecio(nuevoPRecio);
+            } else {
+                Nodo_Cola aux = inicio;
+                while ((aux != null)) {
+                    
+                    if (aux.getDato().getNombre().equals(nombre)) {
+                        
+                        aux.getDato().setNombre(nuevoNombre);
+                        aux.getDato().setDescripcion(nuevaDEs);
+                        aux.getDato().setPrecio(nuevoPRecio);
+                    }
+                    aux = aux.getSiguiente();
+
+                }
+                System.out.println("Elemento modificado");
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Datos no encontrados");
         }
 

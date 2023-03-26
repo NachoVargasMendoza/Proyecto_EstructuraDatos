@@ -76,7 +76,7 @@ public class Inventario_LDC extends Articulos {
         String s ="";
         if(!vacio()){
             Nodo_LDC aux = inicio;
-            s+=aux.getDatos().getNombre()+aux.getDatos().getDescripcion()+aux.getDatos().getPrecio()+aux.getDatos().getCantidad();
+            s+="\t"+aux.getDatos().getNombre()+"-"+aux.getDatos().getDescripcion()+"-"+aux.getDatos().getPrecio()+"-"+aux.getDatos().getCantidad();
             aux=aux.getSiguiente();
             while (aux!=inicio) {                
                 s+=aux.getDatos().getNombre()+aux.getDatos().getDescripcion()+aux.getDatos().getPrecio()+aux.getDatos().getCantidad();
