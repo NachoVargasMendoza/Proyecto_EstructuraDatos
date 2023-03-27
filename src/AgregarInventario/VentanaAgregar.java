@@ -203,8 +203,8 @@ public class VentanaAgregar extends javax.swing.JFrame  {
        
         proNuevo.agregar(nom, des);
         
-        Archivo_Cola n = new Archivo_Cola();
-        n.agregar(n);
+       
+        
         
         
         
