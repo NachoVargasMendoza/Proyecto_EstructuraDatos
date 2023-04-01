@@ -4,8 +4,10 @@
  */
 package Proyecto_EstructuraDeDatos;
 
+
 import AgregarInventario.VentanaAgregar;
 import Inventario.Inventario_LDC;
+import java.util.Scanner;
 
 /**
  *
@@ -19,12 +21,7 @@ public class Principal {
     public static void main(String[] args) {
         VentanaAgregar vn = new VentanaAgregar();
         vn.setVisible(true);
-        
        
-        
-        
-        
-        
         
     }
 

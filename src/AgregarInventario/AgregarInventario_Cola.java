@@ -13,8 +13,8 @@ public class AgregarInventario_Cola extends Articulos {
     private Nodo_Cola inicio;
     private Nodo_Cola fin;
 
-    public AgregarInventario_Cola(String nombre, String descripcion, double precio, int cantidad) {
-        super(nombre, descripcion, precio, cantidad);
+    public AgregarInventario_Cola(String codProdcuto,String coPro,String nombre, String descripcion, double precio, int cantidad, int codProducto) {
+        super(nombre, descripcion,coPro, precio, cantidad,codProducto);
         this.inicio = null;
         this.fin = null;
     }
@@ -32,7 +32,7 @@ public class AgregarInventario_Cola extends Articulos {
 
     public void agregar(String nombre, String descripcion) {
 
-        Articulos articuloNuevo = new Articulos(nombre, descripcion, 0, 0);
+       Articulos articuloNuevo = new Articulos(nombre, descripcion, nombre, 0, 0, 0);
 
         articuloNuevo.setNombre(nombre);
         articuloNuevo.setDescripcion(descripcion);
