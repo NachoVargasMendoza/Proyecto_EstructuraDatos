@@ -36,7 +36,7 @@ public class AgregarInventario_Cola extends Articulos {
 
         articuloNuevo.setNombre(nombre);
         articuloNuevo.setDescripcion(descripcion);
-        archivoAgregar(articuloNuevo);
+        
 
         Nodo_Cola nuevo = new Nodo_Cola();
         nuevo.setDato(articuloNuevo);
@@ -154,25 +154,4 @@ public class AgregarInventario_Cola extends Articulos {
 
     }
     
-    //A partir de aca un archivo de prueba
-    public void archivoAgregar(Articulos datos){
-        try {
-            DataOutputStream d = new DataOutputStream(new FileOutputStream("factura.dat"));
-            String art=datos.getNombre();
-            double pre=datos.getPrecio();
-            String des=datos.getDescripcion();
-            int can=datos.getCantidad();
-            System.out.println(art+"::"+pre+"::"+des+"::"+can);
-            d.writeUTF(art);
-            d.writeUTF(des);
-            d.writeDouble(pre);
-            d.writeInt(can);
-            System.out.println("datos agregados");
-            d.close();
-        } catch (Exception e) {
-            System.out.println("error al agregar datos");
-        }
-    
-    }
-
 }
