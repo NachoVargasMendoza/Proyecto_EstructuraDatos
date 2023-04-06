@@ -17,8 +17,8 @@ public class Inventario_LDC extends Articulos {
     private Nodo_LDC inicio;
     private Nodo_LDC fin;
 
-    public Inventario_LDC(String nombre, String descripcion, String coPro, double precio, int cantidad, int codProducto) {
-        super(nombre, descripcion, coPro, precio, cantidad, codProducto);
+    public Inventario_LDC(String nombre, String descripcion, String coPro, double precio, int cantidad) {
+        super(nombre, descripcion, coPro, precio, cantidad);
         this.inicio = null;
         this.fin = null;
     }
@@ -34,88 +34,14 @@ public class Inventario_LDC extends Articulos {
         }
     }
 
-    public boolean existe(int cod) {
 
-        Nodo_LDC aux = inicio;
-        boolean existe = false;
-        while (aux == null && existe == true) {
-            System.out.println(aux.getDatos().getCoPro());
-            System.out.println(existe);
-            if (aux.getDatos().getCodProducto() == cod) {
-                System.out.println("dato existente");
-                existe = true;
-            } else {
-                //System.out.println(aux.getDatos().getCoPro());
-                aux = aux.getSiguiente();
-
-            }
-
-        }
-        return existe;
-    }
 
     public int codRandom() {
         int i = (int) (Math.random() * 9000) + 1000;
         return i;
     }
 
-    public void agregar(Articulos nu) {
-        int i = (int) (Math.random() * 5);
-
-        if (!existe(i)) {
-            nu.setCodProducto(i);
-        } else {
-            agregar(nu);
-        }
-
-        Nodo_LDC nuevo = new Nodo_LDC();
-        nuevo.setDatos(nu);
-        System.out.println(nuevo.getDatos().getCodProducto());
-
-        if (vacio()) {
-            inicio = nuevo;
-            fin = nuevo;
-            fin.setSiguiente(inicio);
-            inicio.setAnterior(fin);
-        } else if (nu.getCodProducto() < inicio.getDatos().getCodProducto()) {
-            nuevo.setSiguiente(inicio);
-            inicio = nuevo;
-            fin.setSiguiente(inicio);
-            inicio.setAnterior(fin);
-        } else if (nu.getCodProducto() > fin.getDatos().getCodProducto()) {
-            fin.setSiguiente(nuevo);
-            fin = fin.getSiguiente();//fin=nuevo;
-            fin.setSiguiente(inicio);
-            inicio.setAnterior(fin);
-        } else {
-            Nodo_LDC aux = inicio;
-            while (aux.getSiguiente().getDatos().getCodProducto() < nu.getCodProducto()) {
-                aux = aux.getSiguiente();
-            }
-            nuevo.setSiguiente(aux.getSiguiente());
-            nuevo.setAnterior(aux);
-            aux.setSiguiente(nuevo);
-            nuevo.getSiguiente().setAnterior(nuevo);
-        }
-        System.out.println("Datos agregados");
-    }
-
-    public String toString() {
-        String s = "";
-        if (!vacio()) {
-            Nodo_LDC aux = inicio;
-            s += "\n" + aux.getDatos().getCodProducto() + "-" + aux.getDatos().getCoPro() + "-" + aux.getDatos().getPrecio() + "-" + aux.getDatos().getCantidad();
-            aux = aux.getSiguiente();
-            while (aux != inicio) {
-                s += aux.getDatos().getCodProducto() + " " + aux.getDatos().getCoPro() + aux.getDatos().getPrecio() + aux.getDatos().getCantidad();
-                aux = aux.getSiguiente();
-            }
-            System.out.println(s);
-
-        }
-
-        return s;
-    }
+  
 
     public void codigoProducto(Articulos nu) {
         String codigo = "";
@@ -128,7 +54,7 @@ public class Inventario_LDC extends Articulos {
 
         while (existeCod(codigo) && aux == null) {
             System.out.println("Dato actual " + aux.getDatos().getCoPro());
-            if (codigo.equals(aux.getDatos().getCodProducto())) {
+            if (codigo.equals(aux.getDatos().getCoPro())) {
                 codigoProducto(nu);
             } else {
                 aux = aux.getSiguiente();
@@ -181,8 +107,8 @@ public class Inventario_LDC extends Articulos {
         Nodo_LDC aux = inicio;
         boolean existe = false;
         while (aux == null && existe == true) {
-            System.out.println("cod " + aux.getDatos().getCodProducto());
-            if (s.equals(aux.getDatos().getCodProducto())) {
+            System.out.println("cod " + aux.getDatos().getCoPro());
+            if (s.equals(aux.getDatos().getCoPro())) {
                 existe = true;
             } else {
                 aux = aux.getSiguiente();

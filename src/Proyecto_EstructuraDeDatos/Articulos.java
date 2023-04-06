@@ -9,17 +9,15 @@ package Proyecto_EstructuraDeDatos;
  * @author Ignac
  */
 public class Articulos {
-    private String coPro;
-    private int codProducto;
+    private String coPro; 
     private String nombre;
     private String descripcion;
     private double precio;
     private int cantidad;
     
-    public Articulos (String nombre,String descripcion,String coPro,double precio,int cantidad,int codProducto){
+    public Articulos (String nombre,String descripcion,String coPro,double precio,int cantidad){
        
         this.coPro=coPro;
-        this.codProducto=codProducto;
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.precio=precio;
@@ -40,20 +38,6 @@ public class Articulos {
      */
     public void setCoPro(String coPro) {
         this.coPro = coPro;
-    }
-
-    /**
-     * @return the codProducto
-     */
-    public int getCodProducto() {
-        return codProducto;
-    }
-
-    /**
-     * @param codProducto the codProducto to set
-     */
-    public void setCodProducto(int codProducto) {
-        this.codProducto = codProducto;
     }
 
     /**

@@ -13,8 +13,8 @@ public class AgregarInventario_Cola extends Articulos {
     private Nodo_Cola inicio;
     private Nodo_Cola fin;
 
-    public AgregarInventario_Cola(String codProdcuto,String coPro,String nombre, String descripcion, double precio, int cantidad, int codProducto) {
-        super(nombre, descripcion,coPro, precio, cantidad,codProducto);
+    public AgregarInventario_Cola(String nombre,String descripcion,String coPro,double precio,int cantidad) {
+        super(nombre,descripcion,coPro,precio,cantidad);
         this.inicio = null;
         this.fin = null;
     }
@@ -30,12 +30,14 @@ public class AgregarInventario_Cola extends Articulos {
         }
     }
 
-    public void agregar(String nombre, String descripcion) {
+    public void agregar(String nombre, String descripcion,Double precio,int cantidad) {
 
-       Articulos articuloNuevo = new Articulos(nombre, descripcion, nombre, 0, 0, 0);
+       Articulos articuloNuevo = new Articulos(nombre, descripcion, nombre, 0, 0);
 
         articuloNuevo.setNombre(nombre);
         articuloNuevo.setDescripcion(descripcion);
+        articuloNuevo.setPrecio(precio);
+        articuloNuevo.setCantidad(cantidad);
         
 
         Nodo_Cola nuevo = new Nodo_Cola();
@@ -66,6 +68,15 @@ public class AgregarInventario_Cola extends Articulos {
         }
         return existe;
     }
+    
+    public void extraeInicio(){
+        if(vacio()){
+            System.out.println(inicio.getDato().getNombre());
+            inicio=inicio.getSiguiente();
+            fin.setSiguiente(inicio);
+        }
+        System.out.println("Lista vacia");
+    }
 
     public void extraeEspesifico(String nombre) {
         Nodo_Cola inicioAux = null;
@@ -94,7 +105,9 @@ public class AgregarInventario_Cola extends Articulos {
                 inicio = inicio.getSiguiente();
             }
             while (inicioAux != null) {
-                agregar(inicioAux.getDato().getNombre(), inicioAux.getDato().getDescripcion());
+                
+                
+                agregar(inicioAux.getDato().getNombre(),inicioAux.getDato().getDescripcion(),inicioAux.getDato().getPrecio(),inicioAux.getDato().getCantidad());
                 inicioAux = inicioAux.getSiguiente();
             }
 
@@ -143,7 +156,7 @@ public class AgregarInventario_Cola extends Articulos {
         if (!vacio()) {
             Nodo_Cola aux = inicio;
             while (aux != null) {
-                s += "Articulo:" + aux.getDato().getNombre() + "\n";
+                s +="Und: "+aux.getDato().getCantidad()+ " _Articulo:" + aux.getDato().getNombre() + " _Precio: "+aux.getDato().getPrecio()+" _Descripcion: "+aux.getDato().getDescripcion()+"\n";
                 aux = aux.getSiguiente();
             }
             JOptionPane.showMessageDialog(null, s);

@@ -62,7 +62,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="btnAgregar" min="-2" pref="75" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnMostar" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="btnModificiar" min="-2" pref="75" max="-2" attributes="0"/>
                               </Group>
                               <Component id="txtTexto4" max="32767" attributes="0"/>
                           </Group>
@@ -130,7 +130,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnMostar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnModificiar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCargar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -188,12 +188,12 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btnMostar">
+        <Component class="javax.swing.JButton" name="btnModificiar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificiarActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

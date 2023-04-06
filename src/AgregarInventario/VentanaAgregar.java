@@ -36,7 +36,7 @@ public class VentanaAgregar extends javax.swing.JFrame  {
         txtTexto3 = new javax.swing.JTextField();
         txtTexto4 = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        btnMostar = new javax.swing.JButton();
+        btnModificiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaArea = new javax.swing.JTextArea();
         btnCargar = new javax.swing.JButton();
@@ -66,10 +66,10 @@ public class VentanaAgregar extends javax.swing.JFrame  {
             }
         });
 
-        btnMostar.setText("Modificar");
-        btnMostar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificiar.setText("Modificar");
+        btnModificiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostarActionPerformed(evt);
+                btnModificiarActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class VentanaAgregar extends javax.swing.JFrame  {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMostar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnModificiar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtTexto4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -143,7 +143,7 @@ public class VentanaAgregar extends javax.swing.JFrame  {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAgregar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnMostar)
+                        .addComponent(btnModificiar)
                         .addComponent(btnCargar)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -168,27 +168,15 @@ public class VentanaAgregar extends javax.swing.JFrame  {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         String nom = this.txtTexto1.getText();
-        String des = this.txtTexto2.getText();
+        int und= Integer.parseInt(this.txtTexto3.getText());
+        double pre= Double.parseDouble(this.txtTexto2.getText());
+        String des = this.txtTexto4.getText();
+        
        
-        proNuevo.agregar(nom, des);
+        proNuevo.agregar(nom,des,pre,und);
         String s = proNuevo.toString();
         this.txaArea.setText(s);
         
-        
-       
-        
-        
-        
-        
-       
-        //prod.setNombre(this.txtTexto1.getText());
-        //prod.setPrecio(Double.parseDouble(this.txtTexto2.getText()));
-        //prod.setCantidad(Integer.parseInt(this.txtTexto3.getText()));
-        //prod.setDescripcion(this.txtTexto4.getText());
-        
-        
-        //proNuevo.agregar(prod);
-
         this.txtTexto1.setText("");
         this.txtTexto2.setText("");
         this.txtTexto3.setText("");
@@ -197,12 +185,13 @@ public class VentanaAgregar extends javax.swing.JFrame  {
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnMostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarActionPerformed
+    private void btnModificiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificiarActionPerformed
         // TODO add your handling code here:
-        proNuevo.toString();
+       
         String s = JOptionPane.showInputDialog("Ingrese nombre");
         proNuevo.modificar(s);
-    }//GEN-LAST:event_btnMostarActionPerformed
+        this.txaArea.setText(proNuevo.toString());
+    }//GEN-LAST:event_btnModificiarActionPerformed
 
     private void txtTexto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTexto2ActionPerformed
         // TODO add your handling code here:
@@ -249,7 +238,7 @@ public class VentanaAgregar extends javax.swing.JFrame  {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCargar;
-    public static javax.swing.JButton btnMostar;
+    public static javax.swing.JButton btnModificiar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
