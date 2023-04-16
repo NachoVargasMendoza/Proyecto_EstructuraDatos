@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-public class Agregar_Articulos extends Nodo_prueba{
+public class Agregar_Articulos extends Nodo_prueba {
 
     private Nodo_prueba inicio;
 
@@ -39,30 +39,32 @@ public class Agregar_Articulos extends Nodo_prueba{
 
     //Agrega un codigo Alfa
     public void codigoProducto(Articulo nu) {
+        String codigo = generarCodigoUnico();
+        nu.setCodigo(codigo);
+    }
+
+    private String generarCodigoUnico() {
         Random rand = new Random();
         String codigo = "";
         for (int i = 0; i < 2; i++) {
             int n = rand.nextInt(26) + 65;
             codigo += (char) n;
         }
-        boolean codigoUnico = false;
-        while (!codigoUnico) {
-            codigoUnico = true;
-            Nodo_prueba actual = inicio;
-            while (actual != null) {
-                if (existeCod(codigo) || (actual.getDato().getCodigo().equals(codigo))) {
-                    codigoUnico = false;
-                    codigo = "";
-                    for (int i = 0; i < 2; i++) {
-                        int n = rand.nextInt(26) + 65;
-                        codigo += (char) n;
-                    }
-                    break;
-                }
-                actual = actual.getSiguiente();
-            }
+        if (existeCod(codigo) || codigoYaUsado(codigo)) {
+            codigo = generarCodigoUnico();
         }
-        nu.setCodigo(codigo);
+        return codigo;
+    }
+
+    private boolean codigoYaUsado(String codigo) {
+        Nodo_prueba actual = inicio;
+        while (actual != null) {
+            if (actual.getDato().getCodigo().equals(codigo)) {
+                return true;
+            }
+            actual = actual.getSiguiente();
+        }
+        return false;
     }
 
     //Metodos que verifican codigo y nombre en la base de datos
@@ -158,9 +160,9 @@ public class Agregar_Articulos extends Nodo_prueba{
 
             } else {
                 Nodo_prueba aux = inicio;
-                while (aux.getSiguiente() != null && aux.getSiguiente().getDato().getCodigo().compareTo(n.getCodigo())<0) // System.out.println("inicio>"+inicio.getDato().getNombre());
+                while (aux.getSiguiente() != null && aux.getSiguiente().getDato().getCodigo().compareTo(n.getCodigo()) < 0) // System.out.println("inicio>"+inicio.getDato().getNombre());
                 {
-                    aux=aux.getSiguiente();
+                    aux = aux.getSiguiente();
                 }
                 nuevo.setSiguiente(aux.getSiguiente());
                 aux.setSiguiente(nuevo);
@@ -202,27 +204,27 @@ public class Agregar_Articulos extends Nodo_prueba{
 
     //Metodo para extraer es espesifico
     public void extraeEspesifico(String nombre) {
-       
+
         if (encuentra(nombre)) {
             if (inicio.getDato().getNombre().equals(nombre)) {
-                    inicio = inicio.getSiguiente();
+                inicio = inicio.getSiguiente();
+
+                JOptionPane.showMessageDialog(null, "Elemento extraído");
+            } else {
+                Nodo_prueba anterior;
+                Nodo_prueba aux;
+                anterior = inicio;
+                aux = inicio.getSiguiente();
+                while ((aux != inicio) && (!aux.getDato().getNombre().equals(nombre))) {
+                    anterior = anterior.getSiguiente();
+                    aux = aux.getSiguiente();
+                }
+                if (aux != inicio) {
+                    anterior.setSiguiente(aux.getSiguiente());
 
                     JOptionPane.showMessageDialog(null, "Elemento extraído");
-                } else {
-                    Nodo_prueba anterior;
-                    Nodo_prueba aux;
-                    anterior = inicio;
-                    aux = inicio.getSiguiente();
-                    while ((aux != inicio) && (!aux.getDato().getNombre().equals(nombre))) {
-                        anterior = anterior.getSiguiente();
-                        aux = aux.getSiguiente();
-                    }
-                    if (aux != inicio) {
-                        anterior.setSiguiente(aux.getSiguiente());
-
-                        JOptionPane.showMessageDialog(null, "Elemento extraído");
-                    }
                 }
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "Datos no encontrados");
