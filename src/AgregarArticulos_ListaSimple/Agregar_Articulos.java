@@ -38,6 +38,7 @@ public class Agregar_Articulos extends Nodo_prueba {
     }
 
     //Agrega un codigo Alfa
+    //recursividad
     public void codigoProducto(Articulo nu) {
         String codigo = generarCodigoUnico();
         nu.setCodigo(codigo);
